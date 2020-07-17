@@ -1,0 +1,12 @@
+{% extends 'ebook/base.html' %}
+{%load crispy_forms_tags%}
+{% block content %}
+
+<form method="POST">
+    <h3>Delete Book</h3>
+    <h5>Are you sure you want to delete {{pdf_upload.book_title}}</h5>
+    {% csrf_token %}
+    <input type="submit" class="btn btn-warning" value="Delete">
+    <a href="{% url 'pdfs:my_list' username=user.username %}" class="btn btn-primary">Cancel</a>
+</form>
+{% endblock content%}

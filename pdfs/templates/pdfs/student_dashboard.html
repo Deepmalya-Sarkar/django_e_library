@@ -1,0 +1,19 @@
+{% extends 'ebook/base.html' %}
+
+
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="dash">
+    <div class="row">        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Download Ebook</h6>
+                    <a href="{% url 'pdfs:select_book_std' %}"><span class="fa fa-download f-right"> download</span></a>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+{% endblock content %}
+    
