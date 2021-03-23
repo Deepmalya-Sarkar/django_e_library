@@ -1,14 +1,16 @@
-from django.shortcuts import render,get_list_or_404,get_object_or_404
+from django.shortcuts import render,get_list_or_404,get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
 from django.contrib.auth.models import User
 from users.models import Profile
 from pdfs.models import Pdf_Upload
-from pdfs.forms import SubjectSelect
+from django.contrib import messages
+from pdfs.forms import SubjectSelect,PdfUploadForm
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from ebook.decorators import unauthenticated_user,allowed_users
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 #For PDF creation
 import os
 from django.shortcuts import render
@@ -41,14 +43,30 @@ class StudentList(LoginRequiredMixin,ListView):
         user=get_list_or_404(Profile,designation='STUDENT')
         return user
 
-@method_decorator(allowed_users(allowed_roles=['Teacher']), name='dispatch')
-class UploadCreateView(LoginRequiredMixin,CreateView):
-    fields=('book_title','book_author','book_subject','book_publisher','book_version','book_content')
-    model=Pdf_Upload
+@login_required
+@allowed_users(allowed_roles=['Teacher'])
+def PdfUpload(request):
+    if request.method == 'POST':
+        form = PdfUploadForm(request.POST, request.FILES)
+        form.instance.author=request.user
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Uploaded Successfully")
+            return redirect('pdfs:teacher_dashboard')
+    else:
+        form = PdfUploadForm()
+    return render(request, 'pdfs/pdf_upload_form.html', {'form': form})
 
-    def form_valid(self,form):
-        form.instance.author=self.request.user
-        return super().form_valid(form)
+
+
+# @method_decorator(allowed_users(allowed_roles=['Teacher']), name='dispatch')
+# class UploadCreateView(LoginRequiredMixin,CreateView):
+#     fields=('book_title','book_author','book_subject','book_publisher','book_version','book_content')
+#     model=Pdf_Upload
+
+#     def form_valid(self,form):
+#         form.instance.author=self.request.user
+#         return super().form_valid(form)
 
 @login_required
 def select_book(request):
@@ -56,7 +74,8 @@ def select_book(request):
         s_form=SubjectSelect(request.POST)
         if s_form.is_valid():
             book_subject=s_form.cleaned_data.get('book_subject')
-            books=get_list_or_404(Pdf_Upload,book_subject=book_subject)
+            books=Pdf_Upload.objects.filter(book_subject=book_subject).order_by('book_title')
+            # books=get_list_or_404(Pdf_Upload,book_subject=book_subject)
             return render(request,'pdfs/book_list.html',{'books':books})
     else:
         s_form=SubjectSelect()

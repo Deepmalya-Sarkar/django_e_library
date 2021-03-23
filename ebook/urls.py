@@ -23,11 +23,16 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
+    path('instructions/',views.instructions,name='instructions'),
     path('signup/',users_views.register,name='register'),
     path('login/',users_views.user_login,name='login'),
     path('profile/',users_views.profile,name='profile'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
     path('pdfs/',include('pdfs.urls')),
+    path('password-reset/',auth_views.PasswordResetView.as_view(template_name='ebook/password_reset.html'),name='password_reset'),
+    path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='ebook/password_reset_done.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='ebook/password_reset_confirm.html'),name='password_reset_confirm'),
+    path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='ebook/password_reset_complete.html'),name='password_reset_complete'),
 ]
 
 if settings.DEBUG:

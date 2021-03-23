@@ -1,5 +1,9 @@
 {% extends 'ebook/base.html' %}
 {% load crispy_forms_tags %}
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
 {% block content %}
     <div class="content-section">
         
@@ -7,13 +11,18 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Log In</legend>
+            
+   
             <div class="form-group">
                <label for="username">Username</label>
+               <i class="fa fa-user"></i>
                <input type="text" class="form-control" name="username" placeholder="username">
             </div>
+            
                <br>
                <div class="form-group">
                <label for="password">Password</label>
+               <i class="fa fa-key"></i>
                <input type="password" class="form-control" name="password" placeholder="password">
             </div>
             </fieldset>
@@ -24,6 +33,8 @@
         <div class="border-top pt-3">
             <small class="text-muted">
                 Do not have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+                <br>
+                Forgot Password? <a href="{% url 'password_reset' %}">Click here</a>
             </small>
         </div>
    

@@ -1,7 +1,10 @@
 {% extends 'ebook/base.html' %}
 {% load static %}
+{% block title %}
+    <title>E-Library</title>
+{% endblock title %}
 
-{% block content %}
+{% block carousel %}
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -11,12 +14,33 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{% static 'ebook/img/img1.jpg' %}" class="d-block w-100" alt="...">
+        <div class="black-overlay">
+          <div class="container">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>E Library System</h1>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="carousel-item">
         <img src="{% static 'ebook/img/img2.jpg' %}" class="d-block w-100" alt="...">
+        <div class="black-overlay">
+          <div class="container">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>One Stop Solution For Programming Books</h1>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="carousel-item">
         <img src="{% static 'ebook/img/img3.jpg' %}" class="d-block w-100" alt="...">
+        <div class="black-overlay">
+          <div class="container">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Making Resources Available</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -29,5 +53,18 @@
     </a>
   </div>
 
-{% endblock content %}
+{% endblock carousel %}
+{% block content %}
+<br>
+<div class="card">
+  <div class="card-header" style="background-color: rgb(13, 224, 84)">
+    E Library
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Books On Programming</h5>
+    <p class="card-text">As a progamming enthusiat you can find any books regarding subjects like C, C++, Java, Python.</p>
+    <p class="card-text">Simply register as a student and you are good to go </p>
     
+  </div>
+</div>
+{% endblock content %}    

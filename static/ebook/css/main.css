@@ -10,11 +10,12 @@
   #cont{
       margin-top: 0em;
   }
-  .carousel-item{
-    height: 500px;
+.carousel-item{
+    height: 450px;
+    
 } 
 .carousel-item img{
-    height: 500px;
+    height: 450px;
 }
 .account-img {
     height: 100px;
@@ -71,3 +72,36 @@
 #dash{
     margin-top: 1em;
 }
+
+.black-overlay{
+    position: absolute;
+    top:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.6);
+}
+#th {
+    background-color:#9109e0;
+    color: white;
+  }
+table
+{
+    text-align: center;
+}
+
+.content-section {
+    background: rgb(255, 255, 255);
+    padding: 20px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  .main{
+    min-height: 100vh;
+    height:100%;
+}
+
+ 
+          
+ 

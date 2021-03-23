@@ -7,3 +7,6 @@ def home(request):
 
 def welcome(request):
     return render(request,'ebook/welcome.html')
+
+def instructions(request):
+    return render(request,'ebook/instructions.html')

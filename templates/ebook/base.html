@@ -8,12 +8,18 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'ebook/css/main.css' %}">
     
+	{% block title %}
+		
+	{% endblock title %}
+		
   </head>
   <body>
+	  
 	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Navbar</a>
+		<a class="navbar-brand" href="{% url 'home' %}">SAAAD</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -33,12 +39,15 @@
 				
 			</div>
 			<div class="navbar-nav ml-auto">
-				<a class="nav-item nav-link active"href="#">| Welcome {{user.username}} |</a>
+				<p> Welcome {{user.username}} </p>
 				<a class="nav-item nav-link active"href="{% url 'profile' %}">Profile</a>
 				<a class="nav-item nav-link active"href="{% url 'logout' %}">Logout</a>
 			</div>	
 			
 			{% else %}
+			<div class="navbar-nav mr-auto">
+				<a class="nav-item nav-link active" href="{% url 'instructions' %}">Instructions</a>
+			</div>
 			<div class="navbar-nav ml-auto">
 				<a class="nav-item nav-link active"href="{% url 'register' %}">Register</a>
 				<a class="nav-item nav-link active"href="{% url 'login' %}">Login</a>
@@ -46,8 +55,16 @@
 			{% endif %}
 		</div>
 	  </nav>
+	  <div>
+		  
+		  {% block carousel %}
+			  
+		  {% endblock carousel %}
+			  
+	  </div>
 	
 	  <div class="container" id="cont">
+		  <br>
 		{% if messages %}
 			  
 			  {% for message in messages %}
@@ -59,9 +76,10 @@
 				
 				
 			  {% endif %}
-			  
+		<div class="main">
 	  {% block content %}{% endblock content %}
-	  </div>    
+	</div>  
+	</div>    
 
 	 
 	<!-- FOOTER -->
@@ -70,8 +88,9 @@
 		<hr>
 		<div class="container">
 		  
-		  <p>&copy; Deepmalya Sarkar</p>
+		  <p>&copy; Sourav Avijit Arnab Arnab Deepmalya</p>
 		  <p>Contact us at our email</p>
+		  <p>saaad.project@gmail.com</p>
 		</div>
 		</footer>
 	

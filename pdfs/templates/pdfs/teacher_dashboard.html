@@ -1,5 +1,7 @@
 {% extends 'ebook/base.html' %}
-
+{% block title %}
+    <title>Teacher Dashboard</title>
+{% endblock title %}
 
 {% block content %}
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,7 +35,7 @@
         </div>
 
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-red order-card">
+            <div class="card bg-c-pink order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">My Uploads</h6>
                     <a href="{% url 'pdfs:my_list' username=user.username %}"><span class="fa fa-clipboard f-right">My Uploads</span></a>

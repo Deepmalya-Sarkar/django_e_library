@@ -1,10 +1,14 @@
 {% extends 'ebook/base.html' %}
-
+{% block title %}
+    <title>My Uploads</title>
+{% endblock title %}
 
 {% block content %}
+{% if books %}
     <h3>Books</h3>
-    <table border=1>
-        <tr>
+    <div class="table-responsive">
+    <table class="table" border=1>
+        <tr id="th">
         <th>Book Title</th>
         <th>Book Author</th>
         <th>Book Publisher</th>
@@ -25,5 +29,9 @@
     {% endfor %}
         
     </table>
+</div>
+{% else %}
+    <p>No books match the given request</p>
+{% endif %}
 {% endblock content %}
     

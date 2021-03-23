@@ -1,7 +1,10 @@
 {% extends 'ebook/base.html' %}
 {%load crispy_forms_tags%}
-{% block content %}
+{% block title %}
+    <title>Confirm Book Delete</title>
+{% endblock title %}
 
+{% block content %}
 <form method="POST">
     <h3>Delete Book</h3>
     <h5>Are you sure you want to delete {{pdf_upload.book_title}}</h5>

@@ -9,7 +9,7 @@ class Profile(models.Model):
         ("STUDENT","Student"),
     ]
     user=models.OneToOneField(User,related_name='profile',on_delete=models.CASCADE)
-    profile_pic=models.ImageField(upload_to='profile_pics',blank=True)
+    profile_pic=models.ImageField(upload_to='profile_pics',blank=False)
     designation=models.CharField(max_length=50,choices=DESIGNATION_CHOICES,default="STUDENT")
     
     

@@ -1,10 +1,17 @@
 {% extends 'ebook/base.html' %}
 
+{% block title %}
+    <title>Book's List</title>
+{% endblock title %}
+    
 
 {% block content %}
+    
+    {% if books %}
     <h3>Books</h3>
-    <table border=1>
-        <tr>
+    <div class="table-responsive">
+    <table class="table" border=1>
+    <tr id="th">
         <th>Book Title</th>
         <th>Book Author</th>
         <th>Book Publisher</th>
@@ -13,7 +20,7 @@
         <th>Book Content</th>
     </tr>
     
-    {% for book in books  %}
+    {% for book in books %}
     <tr>
         <td>{{book.book_title}}</td>
         <td>{{book.book_author}}</td>
@@ -25,5 +32,9 @@
     {% endfor %}
         
     </table>
+</div>
+{% else %}
+    <p style="color: red;">No books match the given request</p>
+{% endif %}
 {% endblock content %}
     
